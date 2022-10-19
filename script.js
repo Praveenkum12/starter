@@ -1,282 +1,347 @@
-"use strict";
+'use strict';
 
-// let markMass = 78;
-// let markHeight = 1.69;
-// let johnMass = 92;
-// let johnHeight = 1.95;
+// Data needed for a later exercise
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
-// let markMass = 95;
-// let markHeight = 1.88;
-// let johnMass = 85;
-// let johnHeight = 1.76;
+const x = flights.split('+');
+// console.log(x);
 
-// let markBMI = markMass / markHeight ** 2;
-// let johnBMI = johnMass / johnHeight ** 2;
-
-// let markHigherBMI = markBMI > johnBMI;
-// console.log(markBMI, johnBMI, markHigherBMI);
-
-// if (markHigherBMI) {
-//   console.log(`Mark's BMI (${markBMI}) is higher than John's BMI (${johnBMI})`);
-// } else {
-//   console.log(`Mark's BMI (${markBMI}) is higher than John's BMI (${johnBMI})`);
+// for (const el of x) {
+//   const [type, from, to, time] = el.split(';');
+//   const output = `${type.startsWith('_Delayed') ? '🙉' : ''} ${type
+//     .replaceAll('_', ' ')
+//     .trim()} from ${from.slice(0, 3).toUpperCase()} to ${to
+//     .slice(0, 3)
+//     .toUpperCase()} (${time.replace(':', 'h')})`;
+//   console.log(output.padStart(50, ' '));
 // }
 
-// let avgDolphin = (96 + 100 + 89) / 3;
-// let avgKoala = (88 + 91 + 110) / 3;
-// console.log(avgDolphin, avgKoala);
-// if (avgDolphin === avgKoala && avgDolphin >= 100) {
-//   console.log("Its a draw");
-// } else if (avgDolphin > avgKoala && avgDolphin >= 100) {
-//   console.log("Dolphin wins 🐬");
-// } else if (avgDolphin < avgKoala && avgKoala >= 100) {
-//   console.log("Dolphin wins 🐨");
-// } else {
-//   console.log("No team wins the trophy 😒");
+// Data needed for first part of the section
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+
+//   order: function ({ starterIndex = 0, mainIndex = 0 }) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+//   openingHours: {
+//     thu: {
+//       open: 12,
+//       close: 22,
+//     },
+//     fri: {
+//       open: 11,
+//       close: 23,
+//     },
+//     sat: {
+//       open: 0, // Open 24 hours
+//       close: 24,
+//     },
+//   },
+// };
+
+const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// const capitalization = function (name) {
+//   const arr = name.split(' ');
+//   // console.log(arr);
+//   let newArr = [];
+//   for (const i of arr) {
+//     newArr.push(i[0].toUpperCase().concat(i.slice(1)));
+//   }
+//   return newArr.join(' ');
+// };
+
+// console.log(capitalization('praveen kumar'));
+// console.log(capitalization('rasheed ali bashir rahman'));
+
+// const email = 'hello.praveen.io';
+// const loginEmail = ' Hello@Jonas.I0 \n';
+
+// console.log(loginEmail.toLowerCase().trim() === email);
+
+// const arr = ['11B', '23C', '3E', '23a', '78b'];
+
+// for (const val of arr) {
+//   let s = val.slice(-1);
+//   if (s.toUpperCase() === 'B' || s.toUpperCase() === 'E')
+//     console.log('🎉 You got lucky seat');
+//   else console.log('😒 You got middle seat.');
 // }
+// MAP
 
-// let day = "saturday";
-// switch (day) {
-//   case "monday":
-//     console.log("Thats it your first day");
-//     break;
-//   case "tuesday":
-//     console.log("Maybe do some other new activities");
-//     break;
-//   case "wednesday":
-//   case "thursday":
-//     console.log("Make meeting with clients");
-//     break;
-//   case "friday":
-//     console.log("Half day work!");
-//     break;
-//   case "saturday":
-//   case "sunday":
-//     console.log("Just enjoy your Holiday!!! 🙂");
-//     break;
-//   default:
-//     console.log("Not a valid day");
-// }
-
-// let age = 23;
-// let drink = age >= 18 ? "wine 🍷" : "water 🚰";
-// console.log(`I like to drink ${age >= 18 ? "wine 🍷" : "water 🚰"}`);
-
-// let bill = 275;
-// let tip = bill >= 50 && bill <= 300 ? (15 * bill) / 100 : (20 * bill) / 100;
-// console.log(
-//   `The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`
-// );
-
-// const fruitpieces = function (fruits) {
-//   return fruits * 4;
-// };
-
-// const juice = function (apple, orange) {
-//   const total = fruitpieces(apple + orange);
-//   return `Your juice is perpared by ${apple} apples and ${orange} oranges, totally ${total} pieces are used`;
-// };
-
-// console.log(juice(3, 4));
-
-// const juice = (apple, orange) =>
-//   `Your juice is perpared by ${apple} apples and ${orange} oranges.`;
-// console.log(juice(2, 4));
-
-// const calcAverage = (score1, score2, score3) => (score1 + score2 + score3) / 3;
-
-// const checkWinner = function (avgDolphins, avgKoala) {
-//   if (avgDolphins > avgKoala * 2)
-//     console.log(`Dolpnins win (${avgDolphins} vs ${avgKoala}).`);
-//   else if (avgDolphins * 2 < avgKoala)
-//     console.log(`Koala win (${avgKoala} vs ${avgDolphins})`);
-//   else console.log("No team wins 😭");
-// };
-
-// let dolphinAvg = calcAverage(44, 23, 71);
-// let koalaAvg = calcAverage(65, 54, 49);
-
-// checkWinner(dolphinAvg, koalaAvg);
-
-// dolphinAvg = calcAverage(85, 54, 41);
-// koalaAvg = calcAverage(23, 34, 27);
-
-// checkWinner(dolphinAvg, koalaAvg);
-
-// const friends = ["Dyno", "Prasanth", "Dev", "shuhail"];
-// console.log(friends.length);
-// console.log(friends[friends.length - 1]);
-// friends[3] = "Yadhav";
-// console.log(friends);
-
-// const festival = function (invitedMembers) {
-//   console.log(invitedMembers[1]);
-// };
-
-// festival(friends);
-
-// const calcAge = function (birthYear) {
-//   return 2022 - birthYear;
-// };
-
-// const years = [1968, 2000, 2001, 1995, 1999];
-
-// const ages = [
-//   calcAge(years[2]),
-//   calcAge(years[1]),
-//   calcAge(years[years.length - 1]),
+// const src = [
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'c'],
+//   [2, 'Java'],
+//   [3, 'Javascript'],
+//   ['correct', 3],
+//   [true, '🎉 congarts thats right'],
+//   [false, ' Try again'],
 // ];
-// console.log(ages);
 
-// const friends = ["Dyno", "Prasanth", "Dev", "shuhail"];
-// console.log(typeof friends);
-// friends.push("Jake");
-// console.log(friends);
-// friends.unshift("Steve");
-// console.log(friends);
-// friends.pop();
-// friends.shift();
-// console.log(friends);
+// // console.log(Object.entries(src));
+// const question = new Map(src);
+// // console.log(question);
+// console.log(question);
+// // console.log(question.size);
 
-// const fr = friends.indexOf("Dev");
-// console.log(fr);
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') {
+//     console.log(`${key} : ${value}`);
+//   }
+// }
 
-// console.log(friends.includes("dino"));
+// const answer = Number(prompt('Your answer'));
 
-// const bills = [125, 555, 44];
-// const tips = [
-//   calcTip(bills[0]),
-//   calcTip(bills[1]),
-//   calcTip(bills[bills.length - 1]),
-// ];
-// const totalBill = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
-// console.log(totalBill, tips, bills);
+// console.log(question.get(answer === question.get('correct')));
+
+// SET
+
+// const x = [10, 20, 20, 40, 10];
+// const y = new Set(x);
+// console.log(y);
+// y.delete(40);
+// console.log(y);
+// console.log(y.has(20));
+// console.log(y.size);
+// console.log(y.add(60));
+// console.log(y);
+
+// Coding Challenge #2
+
+/* 
+Let's continue with our football betting app!
+
+1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
+      Odd of victory Bayern Munich: 1.33
+      Odd of draw: 3.25
+      Odd of victory Borrussia Dortmund: 6.5
+Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
+
+BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. In this game, it will look like this:
+      {
+        Gnarby: 1,
+        Hummels: 1,
+        Lewandowski: 2
+      }
+
+GOOD LUCK 😀
+*/
+
+//1.
+// for (const [i, el] of game.scored.entries()) {
+//   console.log(`Goal ${i + 1}: ${el}`);
+// }
+
+//2.
+// console.log(Object.values(game.odds));
+// let sum = 0;
+// let x = Object.values(game.odds).length;
+// for (const val of Object.values(game.odds)) {
+//   sum += val;
+// }
+// console.log(sum / x);
+
+//3.
+// for (const [key, value] of Object.entries(game.odds)) {
+//   let str = key === 'x' ? 'Draw' : `Victory ${game[key]}`;
+//   console.log(`Odd of ${str}: ${value}`);
+// }
+
+// const gameEvents = new Map([
+//   [17, '⚽️ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽️ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽️ GOAL'],
+//   [80, '⚽️ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
+
+// console.log(Object.entries(restaurant.openingHours));
+// for (const [i, { open, close }] of Object.entries(restaurant.openingHours)) {
+//   console.log(i, open, close);
+// }
+
+// for (const [i, value] of restaurant.mainMenu.entries()) {
+//   console.log(i, value);
+// }
 
 // const praveen = {
-//   firstName: "Praveen",
-//   lastName: "Kumar",
-//   birthYear: 2000,
-//   friends: ["vedha", "Nivedha", "Yogesh"],
-//   job: "entrepreneur",
-//   hasDriversLicense: true,
+//   name: 'Praveen kumar',
+//   year: 1995,
 //   calcAge: function () {
-//     this.age = 2022 - this.birthYear;
-//     return this.age;
+//     console.log(this);
+//     const isMellanial = () => {
+//       console.log(this);
+//       console.log(this.year >= 1981 && this.year <= 1996);
+//     };
+//     isMellanial();
 //   },
 // };
 
-// console.log(praveen.calcAge());
+// praveen.calcAge();
 
-// console.log(
-//   `${praveen.firstName} has ${praveen["friends"].length} friends, and his best friend is called ${praveen.friends[0]}.`
-// );
-
-// console.log(
-//   `${praveen.firstName} is a ${praveen.calcAge()}-years old ${
-//     praveen.job
-//   }, and he has ${praveen.hasDriversLicense ? "a" : "no"} driver's license.`
-// );
-
-// const mark = {
-//   fullName: "Mark Miller",
-//   mass: 78,
-//   height: 1.69,
-//   calcBMI: function () {
-//     this.BMI = this.mass / this.height ** 2;
-//   },
-// };
-
-// const john = {
-//   fullName: "John Smith",
-//   mass: 92,
-//   height: 1.95,
-//   calcBMI: function () {
-//     this.BMI = this.mass / this.height ** 2;
-//   },
-// };
-
-// mark.calcBMI();
-// john.calcBMI();
-
-// if (mark.BMI > john.BMI) {
-//   console.log(
-//     `Mark's BMI (${mark.BMI}) is higher than John's BMI (${john.BMI})`
-//   );
-// } else {
-//   console.log(
-//     `John's BMI (${john.BMI}) is higher than mark's BMI (${mark.BMI})`
-//   );
-// }
-
-// const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
-// let tips = [];
-// let totals = [];
-
-// const calcTip = function (bill) {
-//   return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
-// };
-
-// for (let i = 0; i < bills.length; i++) {
-//   tips.push(calcTip(bills[i]));
-//   totals.push(tips[i] + bills[i]);
-// }
-
-// const calcAverage = function (arr) {
-//   let sum = 0;
-//   for (let i = 0; i < arr.length; i++) {
-//     sum += arr[i];
-//   }
-//   return sum / arr.length;
-// };
-
-// const totalAvg = calcAverage(totals);
-// console.log(bills, tips, totals, totalAvg);
-
-// const temperature = [3, -2, -6, -1, "error", 9, 13, 17, 15, 14, 9, 5];
-// let max = temperature[0];
-// let min = temperature[0];
-
-// const calcAmpl = function (temp1, temp2) {
-//   const temp = temp1.concat(temp2);
-//   console.log(temp);
-//   for (let i = 0; i < temp.length; i++) {
-//     if (typeof temp[i] === "number") {
-//       if (temp[i] > max) max = temp[i];
-//       if (temp[i] < min) min = temp[i];
-//     }
-//   }
-//   console.log(max, min);
-//   return max - min;
-// };
-
-// const amplitude = calcAmpl([3, 5, 1], [9, 0, 5]);
-// console.log(amplitude);
-
-// let num = [10, 2, 3, 4];
-// let newNums = [];
-// for (let i = 0; i < num.length; i++) {
-//   newNums.unshift(num[i]);
-// }
-// console.log(newNums);
-
-// const calcKelvin = function () {
-//   const measurement = {
-//     type: "temp",
-//     unit: "celsius",
-//     value: Number(prompt("Degree celcius")),
+// const x = function () {
+//   const y = function () {
+//     var hi = 30;
 //   };
-//   console.table(measurement);
-//   const kelvin = measurement.value + 273;
-//   console.log(kelvin);
+//   y();
+//   console.log(hi);
 // };
-// calcKelvin();
+// x();
 
-// const printForeCast = function (arr) {
-//   let str = "";
-//   for (let i = 0; i < arr.length; i++)
-//     str = str.concat(`... ${arr[i]}℃ in ${i + 1} days `);
-//   return str;
+// if (true) {
+//   console.log(this);
+// }
+
+// const praveen = {
+//   name: 'Praveen',
+//   year: 2000,
+//   calcAge: function () {
+//     console.log(this);
+//     console.log(2022 - this.year);
+//   },
 // };
 
-// const temp = [17, 21, 23];
-// console.log(printForeCast(temp) + "...");
+// const priya = {
+//   name: 'Priya',
+//   year: 2001,
+// };
+
+// praveen.calcAge();
+// priya.calcAge = praveen.calcAge;
+// priya.calcAge();
+
+// priya = praveen;
+// console.log(praveen, priya);
+// priya.name = 'Priyanga';
+// console.log(praveen, priya);
+
+// const obj1 = {
+//   name: 'Praveen',
+//   job: 'Entrepreneur',
+//   salary: 10000,
+// };
+
+// const obj2 = { ...obj1 };
+// obj2.name = 'Priya';
+// obj2.dream = 'Nothing';
+// console.log(obj1, obj2);
+
+// const arr = [1, 2, 3];
+// const arrCopy = [...arr];
+// arrCopy[0] = 5;
+// arrCopy[3] = 90;
+// console.log(arr, arrCopy);
+
+// const obj = {
+//   starterIndex: 0,
+//   mainIndex: 2,
+// };
+
+// console.log(restaurant.order(obj));
+
+// const { openingHours } = restaurant;
+// const {
+//   fri: { open: op, close: cl },
+// } = openingHours;
+// console.log(openingHours);
+// console.log(op, cl);
+
+// console.log(restaurant.order());
+
+// let [a, b] = [999, 110];
+// const obj = {
+//   a: 20,
+//   b: 30,
+// };
+// console.log(a, b);
+// ({ a, b } = obj);
+// console.log(a, b);
+
+// const { name, location: locate, categories, termi = [] } = restaurant;
+// console.log(name, locate, categories, termi);
+
+// const arr = [
+//   { a: 20, b: 40 },
+//   { c: 50, d: 60 },
+// ];
+// console.log(arr[0].b + arr[1].d);
+
+// const [starter, menu] = restaurant.order(2, 0);
+// console.log(starter, menu);
+
+// const nested = [2, 4, [5, 6]];
+// const nest = [2, 4, [5, 6]];
+// const [i, , [j, k]] = nested;
+// console.log(i, j, k);
+
+// const [x, , , y] = [2, 3, 4, 5, 6];
+// console.log(x, y);
+
+// let [firstFav, secondFav] = restaurant.categories;
+// console.log(firstFav, secondFav);
+// [firstFav, secondFav] = [secondFav, firstFav];
+// console.log(firstFav, secondFav);
+
+// const x = [1, 2, 3, 4];
+// const y = [5, 6, 7];
+// const z = x.concat(y);
+// console.log(z);
+
+// let arr1 = 'Hi i am you';
+// let arr2 = ' ,you are me';
+// let arr3 = arr1.concat(arr2);
+// console.log(arr3);
